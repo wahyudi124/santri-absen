@@ -24,15 +24,15 @@
               <div class="box-body">
               <div class="form-group">
                   <label>Nama</label>
-                  <input type="text" class="form-control" placeholder="Enter ...">
-                </div>
+                  <input type="text" id ="nama" class="form-control" placeholder="Enter ...">
+                </div> 
                 <div class="form-group">
-                  <label>NIK</label>
-                  <input type="text" class="form-control" placeholder="Enter ...">
+                  <label>NO INDUK</label>
+                  <input type="text" id = "no_induk" class="form-control" placeholder="Enter ...">
                 </div>
                 <div class="form-group">
                   <label>Sakan</label>
-                  <input type="text" class="form-control" placeholder="Enter ...">
+                  <input type="text" id = "sakan" class="form-control" placeholder="Enter ...">
                 </div>
               </div>
               <!-- /.box-body -->

@@ -60,6 +60,31 @@
     });
   })
 
+  $(document).on("click", ".openDialog", function () {
+     var datas = $(this).data('id');
+     $.ajax({
+              type: "POST",
+              url: '<?php echo base_url(); ?>/santri/getdatabyid',
+              data: {"id": datas},
+              success: function(response){
+                  console.log(response)
+                  respon = JSON.parse(response)
+                  $(".modal-body #id").val(respon.santri[0].id);
+                  $(".modal-body #nama").val(respon.santri[0].nama);
+                  $(".modal-body #no_induk").val(respon.santri[0].no_induk);
+                  $(".modal-body #datepicker").val(respon.santri[0].tanggal_lahir);
+                  $(".modal-body #tempat_lahir").val(respon.santri[0].tempat_lahir);
+                  $(".modal-body #sakan").val(respon.santri[0].sakan);
+                  $(".modal-body #alamat").val(respon.santri[0].alamat);
+                  
+              }
+          });
+    //  $(".modal-body #bookId").val( myBookId );
+     // As pointed out in comments, 
+     // it is unnecessary to have to manually call the modal.
+     // $('#addBookDialog').modal('show');
+  });
+
   var video = document.createElement("video");
     var canvasElement = document.getElementById("canvas");
     var canvas = canvasElement.getContext("2d");
@@ -67,6 +92,10 @@
     var outputContainer = document.getElementById("output");
     var outputMessage = document.getElementById("outputMessage");
     var outputData = document.getElementById("outputData");
+
+    var nama = document.getElementById("nama");
+    var no_induk = document.getElementById("no_induk");
+    var sakan = document.getElementById("sakan");
 
     function drawLine(begin, end, color) {
       canvas.beginPath();
@@ -80,6 +109,7 @@
     // Use facingMode: environment to attemt to get the front camera on phones
     navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).then(function(stream) {
       video.srcObject = stream;
+      video.videoWidth = 50;
       video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
       video.play();
       requestAnimationFrame(tick);
@@ -100,12 +130,18 @@
           inversionAttempts: "dontInvert",
         });
         if (code) {
+          console.log(code.data)
           $.ajax({
               type: "POST",
               url: '<?php echo base_url(); ?>/scanner/getdatascan',
               data: {"no_induk": code.data},
               success: function(response){
-                  alert(response);
+                  console.log(response)
+                  respon = JSON.parse(response)
+                  $('#nama').val(respon.santri[0].nama);
+                  $('#no_induk').val(respon.santri[0].no_induk);
+                  $('#sakan').val(respon.santri[0].sakan)
+                  
               }
           });
         } else {

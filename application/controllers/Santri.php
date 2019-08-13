@@ -38,14 +38,38 @@ class Santri extends CI_Controller{
         $this->m_santri->delete_data($where, 'tbsantri');
         redirect('santri/index');
     }
-    public function edit_data($id)
+    public function getdatabyid()
     {
+        $id = $this->input->post('id');
         $where = array('id' => $id);
-        $data['santri'] = $this->m_santri->edit_data($where, 'tbsantri')->result();
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
-        $this->load->view('santri', $data);
-        $this->load->view('templates/footer');
+        $data['santri'] = $this->m_santri->get_ajx($where,'tbsantri')->result();
+        echo json_encode($data);
+    }
+
+    public function update_data(){
+        $id             = $this->input->post('ids');
+        $nama           = $this->input->post('namas');
+        $no_induk       = $this->input->post('no_induks');
+        $tempat_lahir   = $this->input->post('tempat_lahirs');
+        $tanggal_lahir  = $this->input->post('tanggal_lahirs');
+        $alamat         = $this->input->post('alamats');
+        $sakan          = $this->input->post('sakans');
+        
+
+        $datas = array(
+            'nama'          => $nama,
+            'no_induk'      => $no_induk,
+            'tempat_lahir'  => $tempat_lahir,
+            'tanggal_lahir' => $tanggal_lahir,
+            'alamat'        => $alamat,
+            'sakan'         => $sakan
+        );
+
+        $where = array(
+            'id'            => $id
+        );
+        $this->m_santri->update_data($where, $datas,'tbsantri');
+        redirect('santri/index');
     }
 
     

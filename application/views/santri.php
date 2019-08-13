@@ -43,8 +43,8 @@
                 <td><?php echo $str->tanggal_lahir ?></td>
                 <td><?php echo $str->alamat ?></td>
                 <td><?php echo $str->sakan ?></td>
-                <td><a href="<?php echo base_url().'santri/delete_data/'.$str->id?>" class = "btn btn-danger btn-sm"><i class="fa fa-trash"></i></a></td>
-                <td><a href="" class = "btn btn-primary btn-sm"><i class="fa fa-edit"></i></a></td>
+                <td><a href="<?php echo base_url().'santri/delete_data/'.$str->id?>"  class = "btn btn-danger btn-sm"><i class="fa fa-trash"></i></a></td>
+                <td><a href="" data-toggle="modal" data-id= "<?php echo $str->id?>" data-target="#modal-default2" class = "openDialog btn btn-primary btn-sm"><i class="fa fa-edit"></i></a></td>
             </tr>
             <?php endforeach; ?>
 
@@ -113,6 +113,81 @@
               <div class="box-footer">
                 <button type="reset" class="btn btn-default">Batal</button>
                 <button type="submit" class="btn btn-info pull-right">Simpan</button>
+              </div>
+              <!-- /.box-footer -->
+            </form>
+    </div>
+    </div>
+</div>
+<!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+</div>
+
+
+<div class="modal fade" id="modal-default2">
+<div class="modal-dialog">
+<div class="modal-content">
+    <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title">Update Data Santri</h4>
+    </div>
+    <div class="modal-body">
+    <form class="form-horizontal" role="form" method="post" action = "<?php echo base_url().'santri/update_data'?>">
+              <div class="box-body">
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">ID</label>
+                    <div class="col-sm-10">
+                    <input type="text" name="ids" id = "id" class="form-control" placeholder="Id">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Nama</label>
+                    <div class="col-sm-10">
+                    <input type="text" name="namas" id = "nama" class="form-control" placeholder="Nama">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label  class="col-sm-2 control-label">No. Induk</label>
+                    <div class="col-sm-10">
+                    <input type="text" name="no_induks" id = "no_induk" class="form-control" placeholder="Nomor Induk">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label  class="col-sm-2 control-label">Tempat Lahir</label>
+                    <div class="col-sm-10">
+                    <input type="text" name="tempat_lahirs" id= "tempat_lahir" class="form-control" placeholder="Tempat Lahir">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label  class="col-sm-2 control-label">Tanggal Lahir</label>
+                    <div class="col-sm-10">
+                    <input type="text" name="tanggal_lahirs" class="form-control" id="datepicker" placeholder="Tanggal Lahir">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label  class="col-sm-2 control-label">Alamat</label>
+                    <div class="col-sm-10">
+                    <textarea class="form-control" name="alamats" id = "alamat" rows="3" placeholder="Alamat"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label  class="col-sm-2 control-label">Sakan</label>
+                    <div class="col-sm-10">
+                    <input type="text" class="form-control" name="sakans" id ="sakan" placeholder="Sakan">
+                    </div>
+                </div>
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <button type="reset" class="btn btn-default">Batal</button>
+                <button type="submit" class="btn btn-info pull-right">Update</button>
               </div>
               <!-- /.box-footer -->
             </form>
